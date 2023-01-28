@@ -2,13 +2,14 @@ import {  useEffect, useState } from 'react'
 import './App.css'
 import axios from "axios";
 import Album from './Album';
+import ReactAudioPlayer from 'react-audio-player';
 function App() {
 
    const [albums,setAlbums]=useState([]);
   const [seachQuery,setSeachQuery]=useState("soul");      
 const options = {
   method: 'GET',
-  url: 'https://spotify23.p.rapidapi.com/search/',
+  url: 'https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?album_type=SINGLE&offset=20&limit=10',
   params: {
     q: seachQuery,
     type: 'multi',
@@ -27,6 +28,8 @@ const handleSelectChange=(event)=>{
   console.log(event.target.value);
 }
 
+console.log(encodeURI('spotify:track:5jvhTc0g18kwYQNUJM5C4e'))
+
 useEffect(()=>{
   
     axios.request(options).then(function (response) {
@@ -36,6 +39,10 @@ useEffect(()=>{
       console.error(error);
     });
 },[seachQuery])
+const handleChangeHandler=(e)=>{
+  setSeachQuery(e.target.value);
+  console.log(e.target.value);
+}
 
 return (
   <>
@@ -45,12 +52,17 @@ return (
   <option value="pop">Pop</option>
   <option value="classic">Classic</option>
 </select>
-
+<input type="text" placeholder='search' onChange={handleChangeHandler} />
     <section className='wrapper grid grid-cols-3 gap-4'>
    {    albums.map(({data})=>{
    return <Album  trackName={data.name} image={data.coverArt.sources[0].url} />
    }
    )} 
+   <ReactAudioPlayer
+   src="https://music.apple.com/us/album/feel-good-inc/850571319?i=850571371"
+  autoPlay
+  controls
+/>
    </section> 
   
  {console.log(albums)} 
