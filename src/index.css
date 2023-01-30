@@ -5,3 +5,19 @@
 body{
     background-color: black;
 }
+
+.switchModeWrraper{
+    position: relative;
+    margin-inline: 20px;
+}
+.switchModeWrraper span{
+    transition: transform .4s ease-in-out;
+}
+.switchModeWrraper::before{
+    content: '';
+    height: 100%;
+    width: 1px;
+    position: absolute;
+    background-color: white;
+    left: -12px;
+}
