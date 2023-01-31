@@ -44,7 +44,7 @@ const Main = () => {
         <input onChange={inputChangeHandler} className='border-0 text-white outline-0 bg-transparent' type="text" value={enteredWord} placeholder="Search for any word" />
         <SearchIcon />
       </form>
-      <WordDetails word='house'phonetic="hii" />
+      <WordDetails word='HOUSE'phonetic="/hʌʊs/" />
     </section>
   )
 }

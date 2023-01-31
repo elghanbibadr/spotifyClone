@@ -21,3 +21,16 @@ body{
     background-color: white;
     left: -12px;
 }
+
+
+
+/* DETAILS */
+.text-noun::after{
+
+content: '';
+display: inline-flex;
+height: 2px;
+ width: 80%; 
+margin-top: 6px;
+background-color:#776f6f;
+}

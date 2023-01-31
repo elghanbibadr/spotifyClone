@@ -3,18 +3,17 @@ import PlayIcon from './PlayIcon'
 
 const WordDetails = (props) => {
   return (
-    <>
-        <div className='flex'>
-            <div >
-                <h1>{props.word}</h1>
-                <span>{props.phonetic}</span>
+    <article className='text-white'>
+        <div className='flex justify-between  items-center'>
+            <div className='place-self-end' >
+                <h1 className=' text-3xl mb-2 font-bold'>{props.word}</h1>
+                <span className='text-accent'>{props.phonetic}</span>
             
             </div>
-            <div className='bg-lighterAccent'>
                <PlayIcon /> 
-            </div>
         </div>
-    </>
+        <p className='mt-10 flex items-center justify-between text-noun text-xl font-bold'>noun</p>
+    </article>
   )
 }
 
