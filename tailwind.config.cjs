@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx}",
+      "./src/**/*.{js,jsx}",
   ],
   theme:{
     extend: {
@@ -10,7 +10,8 @@ module.exports = {
         primary:"#000",
         secondary:"#fff",
         accent:'#a445ed',
-        blackVeryLight:'#1f1f1f'
+        blackVeryLight:'#1f1f1f',
+        lighterAccent:'#470878'
       },
       borderWidth: {
         myBorder: '1px',
