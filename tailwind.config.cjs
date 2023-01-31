@@ -10,7 +10,12 @@ module.exports = {
         primary:"#000",
         secondary:"#fff",
         accent:'#a445ed',
-      }
+        blackVeryLight:'#1f1f1f'
+      },
+      borderWidth: {
+        myBorder: '1px',
+      },
+
     },
   },
   plugins: [],
