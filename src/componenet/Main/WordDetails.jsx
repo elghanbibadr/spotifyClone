@@ -13,6 +13,16 @@ const WordDetails = (props) => {
                <PlayIcon /> 
         </div>
         <p className='mt-10 flex items-center justify-between text-noun text-xl font-bold'>noun</p>
+        <div className="meaning mt-10">
+
+            <p className='text-neutral-500 font-bold'>Meaning</p>
+            <ul className='p-4'>
+            {props.meaning.map((value) =>{
+                return <li className='my-6 meaning-item'>{value}</li>
+            })}
+            </ul>
+
+        </div>
     </article>
   )
 }
