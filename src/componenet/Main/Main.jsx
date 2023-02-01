@@ -15,24 +15,26 @@ const Main = () => {
   const handleFormSubmited=(e)=>{
     e.preventDefault();
     setFormSubmited(true)
+    axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${inputRef.current.value}`)
+    .then(response=>{
+      console.log(response.data[0])
+      setWordsData(response.data[0])
+    }).catch(error=>{
+      console.log(error.message)
+    }).finally(()=>{
+      setFormSubmited(false)
+      inputRef.current.value=''   
+       }
+    )
     
   }
   
-  useEffect(()=>{ 
-    if (FormSubmited && inputRef.current.value){
-      axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${inputRef.current.value}`)
-      .then(response=>{
-        console.log(response.data[0])
-        setWordsData(response.data[0])
-      }).catch(error=>{
-        console.log(error.message)
-      }).finally(()=>{
-        setFormSubmited(false)
-        setEnteredWord('')
-      }
-      )
-    }
-  }, [FormSubmited]);
+  // useEffect(()=>{ 
+  //   if (FormSubmited && inputRef.current.value){
+  //     console.log(inputRef.current.value)
+     
+  //   }
+  // }, [FormSubmited,wordsData]);
 
 
   return (
@@ -41,6 +43,7 @@ const Main = () => {
         <input  ref={inputRef} className='border-0 text-white outline-0 bg-transparent' type="text"  placeholder="Search for any word" />
         <SearchIcon />
       </form>
+      <h1>hello word</h1>
       { wordsData.length > 0 &&   wordsData.map(({word,phonetic,meanings,synonyms})=>{
      return  <WordDetails word={word} phonetic={phonetic} meaning={meanings} synonyms={synonyms} />
       })}
