@@ -8,13 +8,7 @@ const Main = () => {
      const [enteredWord,setEnteredWord]=useState('');
      const [wordExist,setWordExist]=useState(false);
      const [FormSubmited,setFormSubmited] = useState(false);
-     const [wordsData,setWordsData] = useState([{
-       word:'Housedown',
-       phonetic:'/hʌʊs/',
-       synonyms:['mouse','shope'],
-       meaning:['A structure built or serving as an abode of human beings','The people who live in a house; a household.','A building used for something other than a residence (typically with qualifying word).','The audience for a live theatrical or similar performance','A theatre','A building where a deliberative assembly meets; whence the assembly itself, particularly a component of a legislature.' ]
-     }
-     ])
+     const [wordsData,setWordsData] = useState([])
     const options = {
       methode:"Get",
       url: `https://api.dictionaryapi.dev/api/v2/entries/en/${enteredWord}`,
@@ -35,7 +29,10 @@ const Main = () => {
   useEffect(()=>{ 
     if (FormSubmited && enteredWord !==''){
       axios.request(options).then(function (response) {
-       if (response.ok) setWordExist(true)
+       if (response.status===200) {
+         setWordExist(true)
+          setWordsData(response.data[0])
+       }
         console.log(response.data[0])
 
       }).catch(function (error) {
@@ -43,19 +40,21 @@ const Main = () => {
       }).finally(()=>{
         setEnteredWord('')
         setFormSubmited(false)
+        setWordExist(false)
       })
       console.log('running')
     }
   },[FormSubmited])
 
+  {console.log('compnenet running')}
   return (
     <section>
       <form onSubmit={handleFormSubmited} className='flex justify-between p-2 mx-auto my-10 rounded-md	 bg-blackVeryLight items-center border-myBorder border-accent'>
         <input onChange={inputChangeHandler} className='border-0 text-white outline-0 bg-transparent' type="text" value={enteredWord} placeholder="Search for any word" />
         <SearchIcon />
       </form>
-      {wordsData.map(({word,phonetic,meaning,synonyms})=>{
-     return  <WordDetails word={word} phonetic={phonetic} meaning={meaning} synonyms={synonyms} />
+      { wordsData.length > 0 &&   wordsData.map(({word,phonetic,meanings,synonyms})=>{
+     return  <WordDetails word={word} phonetic={phonetic} meaning={meanings} synonyms={synonyms} />
       })}
     </section>
   )
