@@ -32,7 +32,7 @@ const Main = () => {
       </form>
       <h1>hello word</h1>
       { wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,synonyms})=>{
-     return  <WordDetails word={word} phonetic={phonetic} />
+     return  <WordDetails word={word} phonetic={phonetic} meaning={meanings} />
       })} 
       {console.log(wordsData)}
     </section>
