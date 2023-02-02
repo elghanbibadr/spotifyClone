@@ -20,7 +20,7 @@ const WordDetails = (props) => {
         
         <div className='flex justify-between  items-center'>
             <div className='place-self-end' >
-                <h1 className=' text-4xl capitalize mb-2 font-bold lg:text-6xl'>{props.word}</h1>
+                <h1 className=' text-4xl capitalize mb-2 font-bold lg:text-6xl dark:text-headingLight'>{props.word}</h1>
                 <span className='text-accent font-bold lg:text-lg'>{props.phonetic}</span>
             
             </div>

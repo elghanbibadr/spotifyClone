@@ -4,6 +4,7 @@ module.exports = {
     "./index.html",
       "./src/**/*.{js,jsx}",
   ],
+  darkMode: "class",
   theme:{
     extend: {
       colors:{
@@ -11,7 +12,10 @@ module.exports = {
         secondary:"#fff",
         accent:'#a445ed',
         blackVeryLight:'#1f1f1f',
-        lighterAccent:'#470878'
+        lighterAccent:'#470878',
+        bodyLightBg:'#f4f4f4',
+        headingLight:'#060606',
+        textLight:'#3b3a3a'
       },
       borderWidth: {
         myBorder: '1px',

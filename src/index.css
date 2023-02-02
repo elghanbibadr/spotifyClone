@@ -4,7 +4,13 @@
 
 body{
     background-color: black;
+    transition: background .5s ;
 }
+
+body.dark {
+    background-color: white;
+}
+
 
 .switchModeWrraper{
     position: relative;

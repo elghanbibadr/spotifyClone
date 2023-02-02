@@ -46,11 +46,10 @@ const Main = () => {
 console.log(wordsData)
   return (
     <section>
-      <form onSubmit={fetchWordDefinition} className={`flex justify-between p-4 mx-auto my-10 rounded-md	 bg-blackVeryLight items-center border-myBorder ${inputIsValid ? 'border-accent' : 'border-red-600' } `}>
+      <form onSubmit={fetchWordDefinition} className={`flex justify-between p-4 mx-auto my-10 rounded-md	 bg-blackVeryLight items-center border-myBorder  ${inputIsValid ? 'border-accent' : 'border-red-600' } dark:bg-bodyLightBg `}>
         <input  ref={inputRef} className='border-0 text-white font-bold outline-0 bg-transparent' type="text"  placeholder="Search for any word" />
         <SearchIcon />
       </form>
-      <h1>hello word</h1>
       {   wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,phonetics},index)=>{
      return  <WordDetails key={index} word={word} phonetic={phonetic} meaning={meanings} phonetics={phonetics} />
       })} 

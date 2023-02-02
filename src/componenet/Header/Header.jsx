@@ -6,7 +6,9 @@ const [darkMode,setDarkMode] =useState(true)
   const toggleDarkMode=() => {
     setDarkMode(prv => !prv)
   }
-
+  useEffect(()=>{
+    document.body.classList.toggle('dark')
+  },[darkMode])
   
 
   return (
@@ -21,10 +23,10 @@ const [darkMode,setDarkMode] =useState(true)
 
         </select>
         <div onClick={toggleDarkMode} className='flex items-center'>
-        <div className='h-5 switchModeWrraper mx-4 w-10 rounded-full  bg-accent cursor-pointer flex items-center px-1 '>
+        <div className='h-5 switchModeWrraper mx-4 w-10 rounded-full  bg-accent cursor-pointer flex items-center px-1 dark:bg-neutral-500 '>
           <span className={`h-4 toggler  bg-white w-4 block rounded-full ${darkMode ? 'translate-x-full' :''}`}></span>
         </div>
-        <Moon/>
+        <Moon isDark={darkMode}/>
        </div>
        </div>
       </nav>
