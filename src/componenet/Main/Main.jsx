@@ -7,21 +7,28 @@ import WordDetails from './WordDetails';
 const Main = () => {
      const [wordsData,setWordsData] = useState([])
      const inputRef=useRef()
-  
+    const [wordNotFound,setWordNotFound] = useState(false)
 
 
 
   const fetchWordDefinition=(e)=>{
     e.preventDefault();
+   if(!inputRef.current.value){
+    alert('please enter a word')
+    return
+   }
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${inputRef.current.value}`).then(response=>{
       return response.json()
     }).then(data=>{
+      if (data.message){
+        setWordNotFound(true)
+        setWordsData([])
+        return;
+      }
       setWordsData([data[0]])
-      console.log(data[0])
+      setWordNotFound(false)
     })
-
   }
-  
   
 
   return (
@@ -31,10 +38,10 @@ const Main = () => {
         <SearchIcon />
       </form>
       <h1>hello word</h1>
-      { wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,synonyms})=>{
+      {   wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,synonyms})=>{
      return  <WordDetails word={word} phonetic={phonetic} meaning={meanings} />
       })} 
-      {console.log(wordsData)}
+      { wordNotFound &&  <h1 className='text-white'>not found word</h1>}
     </section>
   )
 }
