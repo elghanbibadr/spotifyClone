@@ -11,6 +11,9 @@ const Main = () => {
     const [inputIsValid,setInputIsValid] = useState(true)
 
 
+    const fetchData={
+
+    }
 
   const fetchWordDefinition=(e)=>{
     e.preventDefault();
@@ -31,8 +34,16 @@ const Main = () => {
       setWordNotFound(false)
     })
   }
+
+  useEffect(()=>{
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/keyboard`).then(response=>{
+      return response.json()
+    }).then(data=>{
+      setWordsData([data[0]])
+    })
+
+  },[])
   
-  console.log(wordsData)
 
   return (
     <section>
