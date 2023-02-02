@@ -8,15 +8,17 @@ const Main = () => {
      const [wordsData,setWordsData] = useState([])
      const inputRef=useRef()
     const [wordNotFound,setWordNotFound] = useState(false)
+    const [inputIsValid,setInputIsValid] = useState(true)
 
 
 
   const fetchWordDefinition=(e)=>{
     e.preventDefault();
    if(!inputRef.current.value){
-    alert('please enter a word')
+    setInputIsValid(false)
     return
-   }
+   } 
+   setInputIsValid(true)
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${inputRef.current.value}`).then(response=>{
       return response.json()
     }).then(data=>{
@@ -30,16 +32,17 @@ const Main = () => {
     })
   }
   
+  console.log(wordsData)
 
   return (
     <section>
-      <form onSubmit={fetchWordDefinition} className='flex justify-between p-2 mx-auto my-10 rounded-md	 bg-blackVeryLight items-center border-myBorder border-accent'>
+      <form onSubmit={fetchWordDefinition} className={`flex justify-between p-2 mx-auto my-10 rounded-md	 bg-blackVeryLight items-center border-myBorder ${inputIsValid ? 'border-accent' : 'border-red-600' } `}>
         <input  ref={inputRef} className='border-0 text-white outline-0 bg-transparent' type="text"  placeholder="Search for any word" />
         <SearchIcon />
       </form>
       <h1>hello word</h1>
-      {   wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,synonyms})=>{
-     return  <WordDetails word={word} phonetic={phonetic} meaning={meanings} />
+      {   wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,synonyms,phonetics})=>{
+     return  <WordDetails word={word} phonetic={phonetic} meaning={meanings} phonetics={phonetics} />
       })} 
       { wordNotFound &&  <h1 className='text-white'>not found word</h1>}
     </section>

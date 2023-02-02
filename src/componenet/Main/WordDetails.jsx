@@ -1,7 +1,19 @@
-import React from 'react'
+import React,{useRef, useState} from 'react'
 import PlayIcon from './PlayIcon'
 
 const WordDetails = (props) => {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const audioRef = useRef();
+
+    const handlePlay = () => {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    };
+
   return (
     <article className='text-white'>
         
@@ -11,7 +23,8 @@ const WordDetails = (props) => {
                 <span className='text-accent'>{props.phonetic}</span>
             
             </div>
-               <PlayIcon /> 
+               <PlayIcon onClick={handlePlay} /> 
+               <audio ref={audioRef} src={props.phonetics[0].audio} />
         </div>
         <p className='mt-10 flex items-center justify-between text-noun text-xl font-bold'>noun</p>
         <div className="meaning mt-10">
