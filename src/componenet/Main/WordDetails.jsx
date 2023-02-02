@@ -17,11 +17,11 @@ const WordDetails = (props) => {
         <div className="meaning mt-10">
 
             <p className='text-neutral-500 font-bold'>Meaning</p>
-            <ul className='p-4'>
+            {/* <ul className='p-4'>
             {props.meaning.map((value) =>{
                 return <li className='my-6 meaning-item'>{value}</li>
             })}
-            </ul>
+            </ul> */}
 
         </div>
     </article>
