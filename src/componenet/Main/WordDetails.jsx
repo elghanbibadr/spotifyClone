@@ -1,4 +1,5 @@
 import React,{useRef, useState} from 'react'
+import Meaning from './Meaning';
 import PlayIcon from './PlayIcon'
 
 const WordDetails = (props) => {
@@ -19,24 +20,17 @@ const WordDetails = (props) => {
         
         <div className='flex justify-between  items-center'>
             <div className='place-self-end' >
-                <h1 className=' text-4xl capitalize mb-2 font-bold'>{props.word}</h1>
-                <span className='text-accent'>{props.phonetic}</span>
+                <h1 className=' text-4xl capitalize mb-2 font-bold lg:text-6xl'>{props.word}</h1>
+                <span className='text-accent font-bold lg:text-lg'>{props.phonetic}</span>
             
             </div>
                <PlayIcon onClick={handlePlay} /> 
                <audio ref={audioRef} src={props.phonetics[0].audio} />
         </div>
-        <p className='mt-10 flex items-center justify-between text-noun text-xl font-bold'>noun</p>
-        <div className="meaning mt-10">
+         {props.meaning.map(({partOfSpeech,definitions},index)=>{
+         return    <Meaning key={index} partOfSpeech={partOfSpeech} definitions={definitions}  />
+        })} 
 
-            <p className='text-neutral-500 font-bold'>Meaning</p>
-             <ul className='p-4'>
-            {props.meaning[0].definitions.map(({definition},index) =>{
-                return <li key={index} className='my-6 meaning-item font-semibold text-lg'>{definition}</li>
-            })}
-            </ul> 
-
-        </div>
     </article>
   )
 }

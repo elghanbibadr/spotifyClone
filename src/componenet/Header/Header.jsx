@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DictionaireLogo from '../Main/DictionaireLogo'
 import Moon from './Moon'
 const Header = () => {
@@ -7,12 +7,14 @@ const [darkMode,setDarkMode] =useState(true)
     setDarkMode(prv => !prv)
   }
 
+  
+
   return (
     <header >
       <nav className='flex items-center justify-between'>
        <DictionaireLogo /> 
        <div className='flex items-center justify-between'>
-        <select className={` bg-black w-20 text-white border-0`} >
+        <select className={`bg-black w-20 text-white border-0`} >
           <option className='hover:text-accent' value="sans serif">Sans Serif</option>
           <option className='hover:text-accent' value="serif">Serif</option>
           <option className='hover:text-accent' value="mono" selected>Mono</option>
