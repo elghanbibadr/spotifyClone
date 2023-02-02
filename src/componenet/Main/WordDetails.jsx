@@ -19,7 +19,7 @@ const WordDetails = (props) => {
         
         <div className='flex justify-between  items-center'>
             <div className='place-self-end' >
-                <h1 className=' text-3xl mb-2 font-bold'>{props.word}</h1>
+                <h1 className=' text-4xl capitalize mb-2 font-bold'>{props.word}</h1>
                 <span className='text-accent'>{props.phonetic}</span>
             
             </div>
@@ -31,8 +31,8 @@ const WordDetails = (props) => {
 
             <p className='text-neutral-500 font-bold'>Meaning</p>
              <ul className='p-4'>
-            {props.meaning[0].definitions.map(({definition}) =>{
-                return <li className='my-6 meaning-item'>{definition}</li>
+            {props.meaning[0].definitions.map(({definition},index) =>{
+                return <li key={index} className='my-6 meaning-item font-semibold text-lg'>{definition}</li>
             })}
             </ul> 
 

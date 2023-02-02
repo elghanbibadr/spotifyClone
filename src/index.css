@@ -38,10 +38,11 @@ background-color:#776f6f;
 
 .meaning-item::before{
     content: '';
-    height: 6px;
+    height: 8px;
     display: inline-block;
-    width: 6px;
-    margin-right:6px;
+    width: 8px;
+    transform: translateX(-14px);
     border-radius: 50%;
     background-color: #a445ed;
 }
+

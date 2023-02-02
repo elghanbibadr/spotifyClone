@@ -11,10 +11,7 @@ const Main = () => {
     const [inputIsValid,setInputIsValid] = useState(true)
 
 
-    const fetchData={
-
-    }
-
+   
   const fetchWordDefinition=(e)=>{
     e.preventDefault();
    if(!inputRef.current.value){
@@ -36,6 +33,7 @@ const Main = () => {
   }
 
   useEffect(()=>{
+    inputRef.current.value="keyboard"
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/keyboard`).then(response=>{
       return response.json()
     }).then(data=>{
@@ -52,10 +50,10 @@ const Main = () => {
         <SearchIcon />
       </form>
       <h1>hello word</h1>
-      {   wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,synonyms,phonetics})=>{
-     return  <WordDetails word={word} phonetic={phonetic} meaning={meanings} phonetics={phonetics} />
+      {   wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,synonyms,phonetics},index)=>{
+     return  <WordDetails key={index} word={word} phonetic={phonetic} meaning={meanings} phonetics={phonetics} />
       })} 
-      { wordNotFound &&  <h1 className='text-white'>not found word</h1>}
+      { wordNotFound &&  <h1  className='text-white'>not found word</h1>}
     </section>
   )
 }
