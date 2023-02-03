@@ -31,12 +31,13 @@ const Header = () => {
       <nav className='flex items-center justify-between'>
        <DictionaireLogo /> 
        <div className='flex items-center justify-between'>
-        <select value={selectedValue} onChange={handleChange} className={`bg-black w-20 text-white border-0`} >
-          <option className='hover:text-accent' value="sans serif">sans serif</option>
-          <option className='hover:text-accent' value="serif">Serif</option>
-          <option className='hover:text-accent' value="monospace" selected>monospace</option>
-
-        </select>
+        <div className="custom-select">
+          <select  value={selectedValue} onChange={handleChange} className={`bg-black w-20 text-white border-0`} >
+            <option  className='select-items'  value="sans serif">sans serif</option>
+            <option  className='select-items' value="serif">Serif</option>
+            <option  className='select-items'  value="monospace" selected>monospace</option>
+          </select>
+        </div>
         <div onClick={toggleDarkMode} className='flex items-center'>
         <div className='h-5 switchModeWrraper mx-4 w-10 rounded-full  bg-accent cursor-pointer flex items-center px-1 dark:bg-neutral-500 '>
           <span className={`h-4 toggler  bg-white w-4 block rounded-full ${darkMode ? 'translate-x-full' :''}`}></span>
