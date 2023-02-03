@@ -43,18 +43,18 @@ const Main = () => {
 
   },[])
   
-console.log(wordsData)
   return (
     <section>
       <form onSubmit={fetchWordDefinition} className={`flex justify-between p-4 mx-auto my-10 rounded-md	 bg-blackVeryLight items-center border-myBorder  ${inputIsValid ? 'border-accent' : 'border-red-600' } dark:bg-bodyLightBg `}>
-        <input  ref={inputRef} className='border-0 text-white font-bold outline-0 bg-transparent' type="text"  placeholder="Search for any word" />
+        <input  ref={inputRef} className='border-0 text-white font-bold outline-0 bg-transparent dark:text-blackVeryLight' type="text"  placeholder="Search for any word" />
         <SearchIcon />
       </form>
+      {!inputIsValid && <p className='text-red-600 text-lg relative bottom-9'>Whoops, can’t be empty…</p>}
       {   wordsData.length > 0 &&    wordsData.map(({word,phonetic,meanings,phonetics},index)=>{
      return  <WordDetails key={index} word={word} phonetic={phonetic} meaning={meanings} phonetics={phonetics} />
       })} 
       { wordNotFound && 
-      <div className='text-white text-center px-6 pt-8 flex flex-col items-center '>
+      <div className='text-white text-center px-6 pt-8 flex flex-col items-center dark:text-textLight '>
         <span className='icon-pal'>😕</span>
     <h1  className='font-bold text-xl my-6'>{error.title}</h1>
     <p className=' text-lg' >{error.message}</p>
