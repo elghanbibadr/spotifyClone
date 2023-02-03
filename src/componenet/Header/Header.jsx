@@ -2,7 +2,15 @@ import React, { useEffect, useState } from 'react'
 import DictionaireLogo from '../Main/DictionaireLogo'
 import Moon from './Moon'
 const Header = () => {
-const [darkMode,setDarkMode] =useState(true)
+  const [selectedValue, setSelectedValue] = useState('');
+  const [darkMode,setDarkMode] =useState(true)
+
+  const handleChange = event => {
+    setSelectedValue(event.target.value);
+    console.log(selectedValue)
+  };
+
+  
   const toggleDarkMode=() => {
     setDarkMode(prv => !prv)
   }
@@ -10,16 +18,23 @@ const [darkMode,setDarkMode] =useState(true)
     document.body.classList.toggle('dark')
   },[darkMode])
   
+ useEffect(()=>{
+   if (selectedValue.includes('sans')){
+     document.body.style.fontFamily='sans-serif'
+   }else {
+     document.body.style.fontFamily=`${selectedValue}`
+   }
+ },[selectedValue])
 
   return (
     <header >
       <nav className='flex items-center justify-between'>
        <DictionaireLogo /> 
        <div className='flex items-center justify-between'>
-        <select className={`bg-black w-20 text-white border-0`} >
-          <option className='hover:text-accent' value="sans serif">Sans Serif</option>
+        <select value={selectedValue} onChange={handleChange} className={`bg-black w-20 text-white border-0`} >
+          <option className='hover:text-accent' value="sans serif">sans serif</option>
           <option className='hover:text-accent' value="serif">Serif</option>
-          <option className='hover:text-accent' value="mono" selected>Mono</option>
+          <option className='hover:text-accent' value="monospace" selected>monospace</option>
 
         </select>
         <div onClick={toggleDarkMode} className='flex items-center'>

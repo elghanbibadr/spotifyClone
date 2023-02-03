@@ -55,8 +55,8 @@ const Main = () => {
       })} 
       { wordNotFound && 
       <div className='text-white text-center px-6 pt-8 flex flex-col items-center dark:text-textLight '>
-        <span className='icon-pal'>😕</span>
-    <h1  className='font-bold text-xl my-6'>{error.title}</h1>
+        <span className='icon-pal '>😕</span>
+    <h1  className='font-bold text-xl my-8'>{error.title}</h1>
     <p className=' text-lg' >{error.message}</p>
       </div>
       }
