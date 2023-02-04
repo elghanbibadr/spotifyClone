@@ -20,7 +20,12 @@ const Dropdown = () => {
         }
     }, [selectedItem])
 
-
+    const spring = {
+        type: "spring",
+        damping: 10,
+        stiffness: 100,
+      }
+      
     return (
 
         <AnimatePresence>
@@ -30,11 +35,12 @@ const Dropdown = () => {
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8"><path fill="none" stroke="#A445ED" stroke-width="1.5" d="m1 1 6 6 6-6" /></svg>
                 </div>
                 {dropDownExpanded && <motion.ul
+                transition={spring}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    exit={{ opacity: 1 }}
                     onClick={handleFontSelected}
-                    className={` absolute right-2 text-base  w-32 p-2 bg-primary border-0 dark:bg-white`} >
+                    className={` absolute right-2 text-base  w-32 p-2 bg-primary border-0 dark:bg-white lg:w-40`} >
                     <li className='p-1  ' >sans serif</li>
                     <li className='p-1 ' >Serif</li>
                     <li className='p-1 '   >monospace</li>
