@@ -20,11 +20,7 @@ module.exports = {
       borderWidth: {
         myBorder: '1px',
       },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Lora', 'serif'],
-        mono: ['Inconsolata', 'monospace']
-      },
+     
     },
   },
   plugins: [],
